@@ -17,12 +17,6 @@
 package com.android.musicfx;
 
 import com.android.audiofx.OpenSLESConstants;
-import com.android.musicfx.widget.Gallery;
-import com.android.musicfx.widget.InterceptableLinearLayout;
-import com.android.musicfx.widget.Knob;
-import com.android.musicfx.widget.Knob.OnKnobChangeListener;
-import com.android.musicfx.widget.Visualizer;
-import com.android.musicfx.widget.Visualizer.OnSeekBarChangeListener;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -114,7 +108,7 @@ public class ActivityMusic extends Activity {
     private boolean mPresetReverbSupported;
 
     // Equalizer fields
-    private final Visualizer[] mEqualizerVisualizer = new Visualizer[EQUALIZER_MAX_BANDS];
+    //private final Visualizer[] mEqualizerVisualizer = new Visualizer[EQUALIZER_MAX_BANDS];
     private int mNumberEqualizerBands;
     private int mEqualizerMinBandLevel;
     private int mEQPresetUserPos = 1;
@@ -326,7 +320,7 @@ public class ActivityMusic extends Activity {
             // Initialize the Virtualizer elements.
             // Set the SeekBar listener.
             if (mVirtualizerSupported) {
-                final Knob knob = (Knob) findViewById(R.id.vIStrengthKnob);
+                /*final Knob knob = (Knob) findViewById(R.id.vIStrengthKnob);
                 knob.setMax(OpenSLESConstants.VIRTUALIZER_MAX_STRENGTH -
                         OpenSLESConstants.VIRTUALIZER_MIN_STRENGTH);
                 knob.setOnKnobChangeListener(new OnKnobChangeListener() {
@@ -354,13 +348,13 @@ public class ActivityMusic extends Activity {
                                 mAudioSession, ControlPanelEffect.Key.virt_enabled, on);
                         return true;
                     }
-                });
+                });*/
             }
 
             // Initialize the Bass Boost elements.
             // Set the SeekBar listener.
             if (mBassBoostSupported) {
-                final Knob knob = (Knob) findViewById(R.id.bBStrengthKnob);
+                /*final Knob knob = (Knob) findViewById(R.id.bBStrengthKnob);
                 knob.setMax(OpenSLESConstants.BASSBOOST_MAX_STRENGTH
                         - OpenSLESConstants.BASSBOOST_MIN_STRENGTH);
                 knob.setOnKnobChangeListener(new OnKnobChangeListener() {
@@ -389,7 +383,7 @@ public class ActivityMusic extends Activity {
                                 mAudioSession, ControlPanelEffect.Key.bb_enabled, on);
                         return true;
                     }
-                });
+                });*/
             }
 
             // Initialize the Equalizer elements.
@@ -399,8 +393,8 @@ public class ActivityMusic extends Activity {
                 if (mEQPreset >= mEQPresetNames.length) {
                     mEQPreset = 0;
                 }
-                equalizerPresetsInit((Gallery)findViewById(R.id.eqPresets));
-                equalizerBandsInit((LinearLayout)findViewById(R.id.eqcontainer));
+                //equalizerPresetsInit((Gallery)findViewById(R.id.eqPresets));
+                //equalizerBandsInit((LinearLayout)findViewById(R.id.eqcontainer));
             }
 
             // Initialize the Preset Reverb elements.
@@ -493,7 +487,7 @@ public class ActivityMusic extends Activity {
     }
 
     private void reverbSpinnerInit(Spinner spinner) {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.spinner_item, mReverbPresetNames);
         adapter.setDropDownViewResource(R.layout.spinner_detail_item);
         spinner.setAdapter(adapter);
@@ -511,10 +505,10 @@ public class ActivityMusic extends Activity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        spinner.setSelection(mPRPreset);
+        spinner.setSelection(mPRPreset);*/
     }
 
-    private void equalizerPresetsInit(Gallery gallery) {
+    /*private void equalizerPresetsInit(Gallery gallery) {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.equalizer_presets,
                 mEQPresetNames);
 
@@ -528,7 +522,7 @@ public class ActivityMusic extends Activity {
             }
         });
         gallery.setSelection(mEQPreset);
-    }
+    }*/
 
 
     /**
@@ -539,7 +533,7 @@ public class ActivityMusic extends Activity {
      * @param enabled
      */
     private void setEnabledAllChildren(final ViewGroup viewGroup, final boolean enabled) {
-        final int count = viewGroup.getChildCount();
+        /*final int count = viewGroup.getChildCount();
         final View bb = findViewById(R.id.bBStrengthKnob);
         final View virt = findViewById(R.id.vIStrengthKnob);
         final View eq = findViewById(R.id.eqcontainer);
@@ -566,7 +560,7 @@ public class ActivityMusic extends Activity {
             } else {
                 view.setEnabled(enabled);
             }
-        }
+        }*/
     }
 
     /**
@@ -581,7 +575,7 @@ public class ActivityMusic extends Activity {
         updateUIHeadset(false);
 
         if (mVirtualizerSupported) {
-            Knob knob = (Knob) findViewById(R.id.vIStrengthKnob);
+            /*Knob knob = (Knob) findViewById(R.id.vIStrengthKnob);
             int strength = ControlPanelEffect
                     .getParameterInt(mContext, mCallingPackageName, mAudioSession,
                             ControlPanelEffect.Key.virt_strength);
@@ -591,12 +585,12 @@ public class ActivityMusic extends Activity {
                     ControlPanelEffect.Key.virt_strength_supported);
             if (!hasStrength) {
                 knob.setVisibility(View.GONE);
-            }
+            }*/
         }
         if (mBassBoostSupported) {
-            ((Knob) findViewById(R.id.bBStrengthKnob)).setValue(ControlPanelEffect
+            /*((Knob) findViewById(R.id.bBStrengthKnob)).setValue(ControlPanelEffect
                     .getParameterInt(mContext, mCallingPackageName, mAudioSession,
-                            ControlPanelEffect.Key.bb_strength));
+                            ControlPanelEffect.Key.bb_strength));*/
         }
         if (mEqualizerSupported) {
             equalizerUpdateDisplay();
@@ -612,7 +606,7 @@ public class ActivityMusic extends Activity {
     }
 
     private void setInterception(boolean isEnabled) {
-        final InterceptableLinearLayout ill =
+        /*final InterceptableLinearLayout ill =
             (InterceptableLinearLayout) findViewById(R.id.contentSoundEffects);
         ill.setInterception(!isEnabled);
         if (isEnabled) {
@@ -627,7 +621,7 @@ public class ActivityMusic extends Activity {
                     toast.show();
                 }
             });
-        }
+        }*/
     }
 
     /**
@@ -636,7 +630,7 @@ public class ActivityMusic extends Activity {
      * layouts so they can take over control/events.
      */
     private void updateUIHeadset(boolean force) {
-        boolean enabled = mToggleSwitch.isChecked() && mIsHeadsetOn;
+        /*boolean enabled = mToggleSwitch.isChecked() && mIsHeadsetOn;
         final Knob bBKnob = (Knob) findViewById(R.id.bBStrengthKnob);
         bBKnob.setBinary(mIsSpeakerOn);
         bBKnob.setEnabled(mToggleSwitch.isChecked()
@@ -656,7 +650,7 @@ public class ActivityMusic extends Activity {
                     mCallingPackageName, mAudioSession,
                     ControlPanelEffect.Key.virt_enabled);
             vIKnob.setOn((enabled && on) || !mVirtualizerIsHeadphoneOnly);
-        }
+        }*/
     }
 
     /**
@@ -675,7 +669,7 @@ public class ActivityMusic extends Activity {
                 mCallingPackageName, mAudioSession, ControlPanelEffect.Key.eq_level_range);
         mEqualizerMinBandLevel = (int) Math.min(EQUALIZER_MIN_LEVEL, bandLevelRange[0]);
         final int mEqualizerMaxBandLevel = (int) Math.max(EQUALIZER_MAX_LEVEL, bandLevelRange[1]);
-        final OnSeekBarChangeListener listener = new OnSeekBarChangeListener() {
+        /*final OnSeekBarChangeListener listener = new OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(final Visualizer v, final int progress,
                     final boolean fromUser) {
@@ -698,7 +692,7 @@ public class ActivityMusic extends Activity {
             public void onStopTrackingTouch(final Visualizer v) {
                 equalizerUpdateDisplay();
             }
-        };
+        };*/
 
         final OnTouchListener tl = new OnTouchListener() {
             @Override
@@ -735,22 +729,22 @@ public class ActivityMusic extends Activity {
                 unitPrefix = "k";
             }
 
-            final Visualizer v = new Visualizer(mContext);
+            /*final Visualizer v = new Visualizer(mContext);
             v.setText(format("%.0f", centerFreqHz) + unitPrefix);
             v.setMax(mEqualizerMaxBandLevel - mEqualizerMinBandLevel);
             v.setOnSeekBarChangeListener(listener);
             v.setOnTouchListener(tl);
             eqcontainer.addView(v, lp);
-            mEqualizerVisualizer[band] = v;
+            mEqualizerVisualizer[band] = v;*/
         }
 
-        TextView tv = (TextView) findViewById(R.id.maxLevelText);
+        /*TextView tv = (TextView) findViewById(R.id.maxLevelText);
         tv.setText(String.format("+%d dB", (int) Math.ceil(mEqualizerMaxBandLevel / 100)));
         tv = (TextView) findViewById(R.id.centerLevelText);
         tv.setText("0 dB");
         tv = (TextView) findViewById(R.id.minLevelText);
         tv.setText(String.format("%d dB", (int) Math.floor(mEqualizerMinBandLevel / 100)));
-        equalizerUpdateDisplay();
+        equalizerUpdateDisplay();*/
     }
 
     private String format(String format, Object... args) {
@@ -761,7 +755,7 @@ public class ActivityMusic extends Activity {
 
     private void showSeekBar(boolean show) {
         for (int i = 0; i < mNumberEqualizerBands; ++i) {
-            mEqualizerVisualizer[i].setShowSeekBar(show);
+            //mEqualizerVisualizer[i].setShowSeekBar(show);
         }
     }
 
@@ -775,7 +769,7 @@ public class ActivityMusic extends Activity {
         for (short band = 0; band < mNumberEqualizerBands; band++) {
             final int level = bandLevels[band];
             final int progress = level - mEqualizerMinBandLevel;
-            mEqualizerVisualizer[band].setProgress(progress);
+            //mEqualizerVisualizer[band].setProgress(progress);
         }
     }
 
